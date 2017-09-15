@@ -12,12 +12,12 @@ var Gem = function(x, y) {
 
 Gem.prototype.update = function() {
     if (
-        player.y + 135 >= gem.y + 90 &&
-        player.y + 90 <= gem.y + 135 &&
-        player.x + 25 <= gem.x + 90 &&
-        player.x + 90 >= gem.x + 25) {
+        player.y + 135 >= this.y + 90 &&
+        player.y + 90 <= this.y + 135 &&
+        player.x + 25 <= this.x + 90 &&
+        player.x + 90 >= this.x + 25) {
         console.log('collected');
-        gem.eraseGem();
+        this.eraseGem();
     }
 }
 
