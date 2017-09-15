@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootswatch": "^3.3.7",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.2.1",
+    "jquery-hammerjs": "^2.0.0"
+  },
+  "name": "froggerlike-game",
+  "version": "1.0.0",
+  "description": "Frogger clone like game, created following the course from udacity object oriented javascript.",
+  "main": "index.html",
+  "repository": "https://github.com/SalvadorP/frogger-game.git",
+  "author": "Salvador P. <salvadorperezd@gmail.com>",
+  "license": "MIT"
+}
