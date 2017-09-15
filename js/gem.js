@@ -1,3 +1,4 @@
+var gemTypes = ['Gem-Blue.png', 'Gem-Green.png', 'Gem-Orange.png'];
 var Gem = function(x, y) {
     // Setting the Player initial location
     this.x = x;
@@ -5,7 +6,7 @@ var Gem = function(x, y) {
     this.value = 5;
 
     // Loading the image by setting this.sprite to the appropriate image
-    this.sprite = 'images/Gem-Blue.png';
+    this.sprite = 'images/' + gemTypes[getRandomIntInclusive(0,2)];
     // IDEA: Make each gem have a different value depending on the colour
 };
 
