@@ -4,19 +4,12 @@
 var player = new Player(200, 380, 100);
 
 var allEnemies = [];
-var enemy = new Enemy(0, Math.random() * 180 + 50, Math.random() * 256);
-allEnemies.push(enemy);
+createEnemy();
 
 var allGems = [];
-var totalGems = getRandomIntInclusive(1,3);
-for(var i=0; i < totalGems; i++) {
-    var gem = new Gem(getRandomIntInclusive(0, 400), getRandomIntInclusive(50, 350));
-    allGems.push(gem);
-}
+createGems();
 
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Listens for key presses and sends they keys to the Player.handleInput().
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',

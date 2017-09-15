@@ -1,15 +1,25 @@
+/**
+ * Gem Class and methods.
+ */
 var gemTypes = ['Gem-Blue.png', 'Gem-Green.png', 'Gem-Orange.png'];
+var gemValues = [5,10,15];
+
+/**
+ * Gem class.
+ * @param integer x 
+ * @param integer y 
+ */
 var Gem = function(x, y) {
-    // Setting the Player initial location
     this.x = x;
     this.y = y;
-    this.value = 5;
-
-    // Loading the image by setting this.sprite to the appropriate image
-    this.sprite = 'images/' + gemTypes[getRandomIntInclusive(0,2)];
-    // IDEA: Make each gem have a different value depending on the colour
+    var selected = getRandomIntInclusive(0,2);
+    this.value = gemValues[selected];
+    this.sprite = 'images/' + gemTypes[selected];
 };
 
+/**
+ * Checks if the player catches the gem, in case affirmative erases it.
+ */
 Gem.prototype.update = function() {
     if (
         player.y + 135 >= this.y + 90 &&
@@ -21,18 +31,27 @@ Gem.prototype.update = function() {
     }
 }
 
+/**
+ * Replaces the gem, when the player catches it.
+ */
 Gem.prototype.replaceGem = function() {
+    // DEBUG: Check if this method it's really necessary.
     this.x = getRandomIntInclusive(200, 300);
     this.y = getRandomIntInclusive(100, 350);
     player.score += this.value;
 }
 
+/**
+ * Erases the Gem when the player catches it adding up the score.
+ */
 Gem.prototype.eraseGem = function() {
     player.score += this.value;
-    // find the gem in the array and erase it.
     findGem(this);
 }
 
+/**
+ * Renders the gem!
+ */
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };

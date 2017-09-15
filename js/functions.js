@@ -7,7 +7,7 @@ function checkCollision(enemy) {
 
     // Player dimensions are x=70 y=80
     // Bug dimensions are x=100 y=80
-    // IDEA: Check collissions here with the gems??
+
     // Check for collision between enemy and player
     if (
         player.y + 135 >= enemy.y + 90 &&
@@ -23,7 +23,7 @@ function checkCollision(enemy) {
     if (player.y > 380) {
         player.y = 380;
     }
-    // Top border, Reached the top!
+    // Top border. Reached the top!
     if (player.y <= 50) {
         player.update();
     }
@@ -50,7 +50,11 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-
+/**
+ * Finds the gem in allGems array and erases it.
+ * 
+ * @param Object gem 
+ */
 function findGem(gem) {
     var remove = 0;
     allGems.forEach(function(el, index) {
@@ -60,4 +64,25 @@ function findGem(gem) {
     });
     allGems.splice(remove, 1);
     remove = 0;
+}
+
+/**
+ * Creates a random number of gems and pushes them to the gems array.
+ * 
+ */
+function createGems() {
+    var totalGems = getRandomIntInclusive(1,3);
+    for(var i=0; i < totalGems; i++) {
+        var gem = new Gem(getRandomIntInclusive(0, 400), getRandomIntInclusive(50, 350));
+        allGems.push(gem);
+    }   
+}
+
+/**
+ * Creates an enemy and pushes it to the enemies array.
+ * 
+ */
+function createEnemy() {
+    var enemy = new Enemy(0, Math.random() * 180 + 50, Math.random() * 256);
+    allEnemies.push(enemy);
 }

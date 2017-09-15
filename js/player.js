@@ -1,34 +1,46 @@
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/**
+ * Player Class and methods.
+ */
+
+/**
+ * Players Class.
+  * @param integer x 
+  * @param integer y 
+  * @param integer speed
+ */
 var Player = function(x, y, speed) {
-    // Setting the Player initial location
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.score = 0;
     this.level = 0;
-
-    // Loading the image by setting this.sprite to the appropriate image
     this.sprite = 'images/char-boy.png';
 };
 
+/**
+ * Method for changing the character of the player.
+ */
 Player.prototype.changeChar = function() {
     ctx.drawImage(Resources.get(player.sprite), player.x, player.y);
 }
 
+/**
+ * The player has arrived to the top! 
+ * Adds points, level and sends the player to the bottom to start again.
+ */
 Player.prototype.update = function(dt) {
-    // this.sprite = player.sprite;
     this.score += 10;
     this.level += 1;
     this.x = 200;
     this.y = 380;
-    var enemy = new Enemy(0, Math.random() * 180 + 50, Math.random() * 256);
-    allEnemies.push(enemy);
-    var gem = new Gem(getRandomIntInclusive(0, 500), getRandomIntInclusive(50, 350));
-    allGems.push(gem);
+
+    createEnemy();
+    createGems();
 };
 
+/**
+ * Handles the input for the player, depending on the key pressed.
+ */
 Player.prototype.handleInput = function(keyCode) {
     switch (keyCode) {
         case 'up':
@@ -67,18 +79,26 @@ Player.prototype.handleInput = function(keyCode) {
 
 };
 
+/**
+ * Game over! Reset the player, enemies, gems and the game.
+ */
 Player.prototype.resetPlayer = function() {
+    // Game over!
     player.x = 200;
     player.y = 380;
     player.score = 0;
     player.level = 0;
     allEnemies = [];
-    var enemy = new Enemy(0, Math.random() * 180 + 50, Math.random() * 256);
-    allEnemies.push(enemy);
+    allGems = [];
+    createGems();
+    createEnemy();
 }
 
+/**
+ * Renders the player along with the score and level.
+ */
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    document.getElementById('score').innerHTML = player.score;
-    document.getElementById('level').innerHTML = player.level;
+    document.getElementById('score').innerHTML = this.score;
+    document.getElementById('level').innerHTML = this.level;
 };
