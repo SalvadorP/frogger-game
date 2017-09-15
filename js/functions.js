@@ -86,3 +86,11 @@ function createEnemy() {
     var enemy = new Enemy(0, Math.random() * 180 + 50, Math.random() * 256);
     allEnemies.push(enemy);
 }
+
+/**
+ * Takes the data stored in the event and passes it to the player.handleInput().
+ * @param obj event 
+ */
+function actionHandler(event) {
+    player.handleInput(event.data.action);
+}

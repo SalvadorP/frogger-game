@@ -24,3 +24,8 @@ document.addEventListener('keyup', function(e) {
     };
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+$('#up').hammer().bind("panup tap press", {action: 'up'}, actionHandler);
+$('#down').hammer().bind("pandown tap press", {action: 'down'}, actionHandler);
+$('#left').hammer().bind("panleft tap press", {action: 'left'}, actionHandler);
+$('#right').hammer().bind("panright tap press", {action: 'right'}, actionHandler);
